@@ -1,24 +1,29 @@
 ﻿#Requires AutoHotkey v2.0
 #Include config.ahk
 
+;------------ Initialization ------------
+
 global running := true
 global TotalWidth := SysGet(78)
 global TotalHeight := SysGet(79)
 
-delay := Config.pressDelay
-mouseWeight := Config.mouseWeight
+delay := Config.pressDelay ; Time between actions
+keyWeight := Config.keyWeight ; Probability of pressing a normal vs special key
+mouseWeight := Config.weight ; Probability of pressing a key vs clicking the mouse
 
+; Important saftey check to avoid disaster
 if delay == 0 {
     MsgBox("Delay must be greater than 0!")
     ExitApp
 }
 
-keyWeight := KeyConfig.keyWeight
+; Get all the keys
 specials := KeyConfig.specials
 letters := KeyConfig.letters
 symbols := KeyConfig.symbols
 keys := []
 
+; Add the symbols and letters toghether
 for i, v in letters
     keys.Push(v)
 
@@ -28,10 +33,11 @@ for i, v in symbols
 mouse := MouseConfig.mouse
 speed := MouseConfig.speed
 buttons := MouseConfig.buttons
-maxClick := MouseConfig.maxClick
+maxClicks := MouseConfig.maxClicks
 
 MsgBox "Random key press has started. Press ESC to stop. Press Ctrl + P to pause/resume."
 
+;------------ Main processing ------------
 while True
 {
     if running {
@@ -58,7 +64,8 @@ while True
                 ; Get a random posistion
                 x := Random(0, TotalWidth)
                 y := Random(0, TotalHeight)
-                clickTimes := Random(1, maxClick)
+                ; Get a random amount of clicks
+                clickTimes := Random(1, maxClicks)
                 
                 MouseClick(button, x, y, clickTimes, speed)
             }
@@ -66,6 +73,8 @@ while True
     }
     Sleep(delay)
 }
+
+;------------ Program control ------------
 
 Esc::{
     MsgBox "Exiting Program..."
