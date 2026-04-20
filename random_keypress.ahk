@@ -1,15 +1,14 @@
 ﻿#Requires AutoHotkey v2.0
 #Include config.ahk
 
-;------------ Initialization ------------
-
+;------------ Configure ------------
 global running := true
 global TotalWidth := SysGet(78)
 global TotalHeight := SysGet(79)
 
 delay := Config.pressDelay ; Time between actions
 keyWeight := Config.keyWeight ; Probability of pressing a normal vs special key
-mouseWeight := Config.weight ; Probability of pressing a key vs clicking the mouse
+weight := Config.weight ; Probability of pressing a key vs clicking the mouse
 
 ; Important saftey check to avoid disaster
 if delay == 0 {
@@ -30,19 +29,19 @@ for i, v in letters
 for i, v in symbols
     keys.Push(v)
 
-mouse := MouseConfig.mouse
+mouse := Config.mouse
 speed := MouseConfig.speed
 buttons := MouseConfig.buttons
 maxClicks := MouseConfig.maxClicks
 
-MsgBox "Random key press has started. Press ESC to stop. Press Ctrl + P to pause/resume."
+MsgBox "Random Keypress has started. Press ESC to stop. Press Ctrl + P to pause/resume."
 
 ;------------ Main processing ------------
 while True
 {
     if running {
         ; Randomly decide to press a key or mouse based on the weight
-        if (Random(0, 1) < mouseWeight){
+        if (Random(0, 1) > weight){
             ; Randomly decide whether to press a single or special key
             if (Random(0, 1) > keyWeight)
             {
@@ -71,15 +70,20 @@ while True
             }
         }
     }
+
+    ; Delay for allowing AHK to check for hotkeys, and for user expierence
     Sleep(delay)
 }
 
 ;------------ Program control ------------
 
+; Exits the program
 Esc::{
-    MsgBox "Exiting Program..."
+    MsgBox "Exiting program..."
     ExitApp
 }
+
+; Flips the current state without exiting the program
 ^p::
 {
     global running

@@ -3,7 +3,7 @@ MouseConfig := {}
 Config := {}
 
 Config.pressDelay := 500 ; Time in milliseconds between key presses. IMPORTANT: Must be greater than 0!
-Config.weight := 0.3 ; Probability of pressing the mouse instead of a key
+Config.weight := 0.7 ; Probability of pressing a key instead of the mouse
 Config.keyWeight := 0.7 ; Probability of pressing a normal key instead of a special key
 Config.mouse := true
 
