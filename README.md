@@ -10,7 +10,7 @@ It acts like one, but don’t worry—it doesn’t steal your data, destroy your
 (You can check the code if you don’t trust me. I would.)
 
 ## How to Use
-Clone the project (or download it like a normal human).
+Clone the project (or [download](https://github.com/RoboticsEqualsFun/random-keypress/releases/tag/1.0) it like a normal human).
 Double-click the .exe.
 A popup will appear and tell you what’s about to happen.
 Press OK and accept your fate.
