@@ -1,14 +1,17 @@
 ﻿#Requires AutoHotkey v2.0
-#Include config.ahk
 
 ;------------ Configure ------------
 global running := true
 global TotalWidth := SysGet(78)
 global TotalHeight := SysGet(79)
 
-delay := Config.pressDelay ; Time between actions
-keyWeight := Config.keyWeight ; Probability of pressing a normal vs special key
-weight := Config.weight ; Probability of pressing a key vs clicking the mouse
+delay := Number(IniRead("config.ini", "Config", "pressDelay"))
+keyWeight := Number(IniRead("config.ini", "Config", "keyWeight"))
+weight := Number(IniRead("config.ini", "Config", "weight"))
+mouse := IniRead("config.ini", "Config", "mouse")
+
+speed := Number(IniRead("config.ini", "Mouse", "speed"))
+maxClicks := Number(IniRead("config.ini", "Mouse", "maxClicks"))
 
 ; Important saftey check to avoid disaster
 if delay == 0 {
@@ -17,22 +20,33 @@ if delay == 0 {
 }
 
 ; Get all the keys
-specials := KeyConfig.specials
-letters := KeyConfig.letters
-symbols := KeyConfig.symbols
-keys := []
+LoadIniList(file, section) {
+    arr := []
+    i := 1
 
+    while true {
+        value := IniRead(file, section, i, "")
+        if (value = "")
+            break
+
+        arr.Push(value)
+        i++
+    }
+
+    return arr
+}
+symbols := LoadIniList("config.ini", "Symbols")
+letters := LoadIniList("config.ini", "Letters")
+specials := LoadIniList("config.ini", "Specials")
+buttons := LoadIniList("config.ini", "buttons")
+
+keys := []
 ; Add the symbols and letters toghether
 for i, v in letters
     keys.Push(v)
 
 for i, v in symbols
     keys.Push(v)
-
-mouse := Config.mouse
-speed := MouseConfig.speed
-buttons := MouseConfig.buttons
-maxClicks := MouseConfig.maxClicks
 
 MsgBox "Random Keypress has started. Press ESC to stop. Press Ctrl + P to pause/resume."
 
