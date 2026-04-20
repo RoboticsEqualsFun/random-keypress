@@ -11,6 +11,7 @@ It acts like one, but don’t worry—it doesn’t steal your data, destroy your
 
 ## 🛠️ How to Use
 Clone the project (or [download](https://github.com/RoboticsEqualsFun/random-keypress/releases/tag/2.0.0) it like a normal human).
+Follow the instructions in the installer
 Double-click the .exe.
 A popup will appear and tell you what’s about to happen.
 Press OK and accept your fate.
@@ -21,7 +22,10 @@ Randomly click your mouse
 Randomly press keys  
 Generally make you question your life choices
 
-## Controls (yes, you can escape)
+## ⚙️ Config
+
+
+## 🎮 Controls (yes, you can escape)
 Esc → Emergency stop before things get worse  
 Ctrl + Alt + P → Pause / Resume (for when chaos needs a break)
 
