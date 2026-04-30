@@ -23,7 +23,8 @@ Randomly press keys
 Generally make you question your life choices
 
 ## ⚙️ Config
-
+Yes — you can tweak your prank program to your liking.
+If you want to change the config, there is dedicated documentation here
 
 ## 🎮 Controls (yes, you can escape)
 Esc → Emergency stop before things get worse  
