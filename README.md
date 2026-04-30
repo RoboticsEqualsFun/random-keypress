@@ -24,7 +24,23 @@ Generally make you question your life choices
 
 ## ⚙️ Config
 Yes — you can tweak your prank program to your liking.
-If you want to change the config, there is dedicated documentation here
+
+The program is fully configurable, allowing you to adjust how often actions happen, 
+how the mouse behaves, and what kinds of keys or combinations are used. 
+This makes it easy to fine-tune the “chaos level” without changing any code.
+
+All configuration settings are stored in a separate config file for simplicity and safety.
+
+If you want to modify anything, there is dedicated documentation [here](CONFIG.md)
+
+That file explains:
+
+- What each setting does
+- Valid value types and ranges
+- How mouse and keyboard behavior is controlled
+- Rules for safely editing the config without breaking the program
+
+💡 Tip: If you're unsure about a setting, change only one value at a time and test the result before continuing.
 
 ## 🎮 Controls (yes, you can escape)
 Esc → Emergency stop before things get worse  
